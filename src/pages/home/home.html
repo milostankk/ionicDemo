@@ -10,9 +10,44 @@
 <ion-content padding>
   <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-list radio-group (ionChange)="groupingSelected($event)">
+    <ion-item>
+      <ion-label>All</ion-label>
+      <ion-radio value="All"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Index</ion-label>
+      <ion-radio value="Index"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sector</ion-label>
+      <ion-radio value="Sector"></ion-radio>
+    </ion-item>
+  </ion-list>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+
+  <ion-item *ngIf="selectedGrouping === 'Index' || selectedGrouping === 'Sector'">
+    <ion-label>{{selectedGrouping}}</ion-label>
+    <ion-select>
+      <ion-option *ngFor="let sub of content" [value]="sub" (ionSelect)="groupSelected(sub)">{{sub}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+
+<ion-row *ngIf="selectedGroup || selectedGrouping === 'All'">
+  <ion-item>
+    <ion-label>Date from:</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dateFrom"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Date to:</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dateTo"></ion-datetime>
+  </ion-item>
+</ion-row>
+
+  <ion-row *ngIf="selectedGroup || selectedGrouping === 'All'">
+    <button ion-button block ion-button  round (click)="post()">Generate</button>
+  </ion-row>
 </ion-content>
