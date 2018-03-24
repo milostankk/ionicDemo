@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {DataProvider} from '../../providers/data/data';
+import {DataDisplayPage} from '../data-display/data-display';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class HomePage implements OnInit{
   dateFromSelected;
   dateToSelected;
   dataReady = false;
+  dataDisplayPage = DataDisplayPage;
 
   constructor(public navCtrl: NavController, private provider: DataProvider) {
   }
@@ -34,6 +36,7 @@ export class HomePage implements OnInit{
 
   groupingSelected(e) {
     this.selectedGroup = '';
+    if (e === 'All') {this.selectedGroup = e}
     this.selectedGrouping = e;
     if (e == 'Index') {
       this.provider.getIndices().subscribe(content => this.content = content);
@@ -52,8 +55,7 @@ export class HomePage implements OnInit{
   }
 
   post() {
-    //todo: figureout how to navigate
-    sessionStorage.setItem('super', this.selectedGrouping);
+    sessionStorage.setItem('super', this.selectedGroup);
     sessionStorage.setItem('superType', this.selectedGroup);
     if(this.dateFrom) {
       this.dateFrom = new Date(this.dateFrom);
@@ -65,6 +67,8 @@ export class HomePage implements OnInit{
       this.dateToSelected = this.dateTo.toISOString();
       sessionStorage.setItem('to', this.dateToSelected);
     }
+
+    this.navCtrl.push(this.dataDisplayPage);
 
     console.log(this.selectedGrouping);
     console.log(this.selectedGroup);

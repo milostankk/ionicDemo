@@ -1,0 +1,39 @@
+<!--
+  Generated template for the DataDisplayPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!--Hello from display component!-->
+
+  <div *ngFor="let ep of endpoints" id="{{ep.title}}"></div>
+
+
+
+
+
+
+
+  <!--<h1>{{title}}</h1>-->
+  <!--<div *ngIf="options?.length">-->
+    <!--<div *ngFor="let option of options; let i = index">-->
+      <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+          <!--<div id="{{option?.endpoint?.title}}" style="width: 100% !important; display: block">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<br>-->
+    <!--</div>-->
+  <!--</div>-->
+</ion-content>

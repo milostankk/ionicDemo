@@ -10,12 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
 import {HttpClientModule} from '@angular/common/http';
+import {DataDisplayPage} from '../pages/data-display/data-display';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DataDisplayPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DataDisplayPage
   ],
   providers: [
     StatusBar,
